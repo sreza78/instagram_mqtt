@@ -99,7 +99,12 @@ export class FbnsClient extends EventEmitter<ToEventFn<FbnsClientEvents & { [x: 
         this.client.on('disconnect', reason =>
             this.safeDisconnect
                 ? this.emit('disconnect', reason && JSON.stringify(reason))
-                : this.emit('error', new ClientDisconnectedError(`MQTToTClient got disconnected. Reason: ${reason && JSON.stringify(reason)}`)),
+                : this.emit(
+                      'error',
+                      new ClientDisconnectedError(
+                          `MQTToTClient got disconnected. Reason: ${reason && JSON.stringify(reason)}`,
+                      ),
+                  ),
         );
         this.client.listen<MqttMessage>(FbnsTopics.FBNS_MESSAGE.id, msg => this.handleMessage(msg));
         this.client.listen(

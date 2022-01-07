@@ -29,28 +29,28 @@
   "author": "nerix",
   "license": "MIT",
   "dependencies": {
-    "chance": "^1.1.6",
-    "debug": "^4.1.1",
+    "chance": "^1.1.8",
+    "debug": "^4.3.3",
     "eventemitter3": "^4.0.7",
-    "instagram-private-api": "^1.45.1",
+    "instagram-private-api": "github:sreza78/instagram-private-api",
     "mqtts": "^1.5.0",
     "socks": "^2.6.1"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.32",
-    "@types/debug": "^4.1.5",
-    "@types/jest": "^26.0.23",
-    "@types/luxon": "^1.25.0",
-    "@typescript-eslint/eslint-plugin": "^4.23.0",
-    "@typescript-eslint/parser": "^4.23.0",
-    "eslint": "^7.26.0",
+    "@types/bluebird": "^3.5.36",
+    "@types/debug": "^4.1.7",
+    "@types/jest": "^26.0.24",
+    "@types/luxon": "^1.27.1",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^26.6.3",
-    "prettier": "^2.3.0",
+    "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.5.6",
     "ts-xor": "^1.0.8",
-    "typescript": "^4.0.3"
+    "typescript": "^4.5.4"
   },
   "types": "dist/index.d.ts"
 }

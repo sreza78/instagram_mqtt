@@ -133,7 +133,10 @@ export interface ThriftToObjectStruct {
     items: ThriftMessage[];
 }
 
-export function thriftReadToObject<T extends Record<string, any>>(message: Buffer, descriptors: ThriftPacketDescriptor[]): ThriftToObjectResult<T> {
+export function thriftReadToObject<T extends Record<string, any>>(
+    message: Buffer,
+    descriptors: ThriftPacketDescriptor[],
+): ThriftToObjectResult<T> {
     const readResult = thriftRead(message);
     const topLevel = readResult.filter(x => x.context.length === 0);
     const result = thriftReadSingleLevel(topLevel, descriptors) as ThriftToObjectResult<T>;
@@ -175,7 +178,10 @@ export function thriftReadToObject<T extends Record<string, any>>(message: Buffe
     return result;
 }
 
-function thriftReadSingleLevel(readResults: ThriftMessage[], descriptors: ThriftPacketDescriptor[]): Record<string, any> {
+function thriftReadSingleLevel(
+    readResults: ThriftMessage[],
+    descriptors: ThriftPacketDescriptor[],
+): Record<string, any> {
     const result = {};
     const otherFindings = [];
 

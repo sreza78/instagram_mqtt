@@ -59,7 +59,8 @@ export class RealtimeClient extends EventEmitter<ToEventFn<RealtimeClientEvents>
             graphQlSubs: [],
             skywalkerSubs: [],
             ...(initOptions || {}),
-            socksOptions: typeof initOptions === 'object' && !Array.isArray(initOptions) ? initOptions.socksOptions : undefined,
+            socksOptions:
+                typeof initOptions === 'object' && !Array.isArray(initOptions) ? initOptions.socksOptions : undefined,
         };
     }
 
@@ -212,9 +213,9 @@ export class RealtimeClient extends EventEmitter<ToEventFn<RealtimeClientEvents>
     }
 
     public irisSubscribe({
-                             seq_id,
-                             snapshot_at_ms,
-                         }: {
+        seq_id,
+        snapshot_at_ms,
+    }: {
         seq_id: number;
         snapshot_at_ms: number;
     }): Promise<MqttMessageOutgoing> {
@@ -224,7 +225,7 @@ export class RealtimeClient extends EventEmitter<ToEventFn<RealtimeClientEvents>
             data: {
                 seq_id,
                 snapshot_at_ms,
-                snapshot_app_version: this.ig.state.appVersion
+                snapshot_app_version: this.ig.state.appVersion,
             },
         });
     }

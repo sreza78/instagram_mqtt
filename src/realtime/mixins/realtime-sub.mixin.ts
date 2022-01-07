@@ -58,5 +58,4 @@ export class RealtimeSubMixin extends Mixin {
     get name(): string {
         return 'Realtime Sub';
     }
-
 }

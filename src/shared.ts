@@ -2,8 +2,8 @@ import { IgApiClient } from 'instagram-private-api';
 import { CompressCallback, deflate, InputType, unzip, ZlibOptions } from 'zlib';
 import debug, { Debugger } from 'debug';
 import { MqttClient } from 'mqtts';
-import {promisify} from 'util';
-const deflatePromise = promisify(deflate as (buf: InputType, options: ZlibOptions, callback: CompressCallback)=> void);
+import { promisify } from 'util';
+const deflatePromise = promisify(deflate as (buf: InputType, options: ZlibOptions, callback: CompressCallback) => void);
 const unzipPromise = promisify(unzip as (buf: InputType, callback: CompressCallback) => void);
 
 // TODO: map
@@ -32,7 +32,7 @@ export function createFbnsUserAgent(ig: IgApiClient): string {
 }
 
 export function compressDeflate(data: string | Buffer): Promise<Buffer> {
-    return deflatePromise(data, {level: 9});
+    return deflatePromise(data, { level: 9 });
 }
 
 export function unzipAsync(data: string | Buffer): Promise<Buffer> {
@@ -58,8 +58,7 @@ export function isJson(buffer: Buffer): boolean {
  * @param {string} path
  * @returns {(msg: string, ...additionalData: any) => void}
  */
-export const debugChannel = (...path: string[]): Debugger =>
-    debug(['ig', 'mqtt', ...path].join(':'));
+export const debugChannel = (...path: string[]): Debugger => debug(['ig', 'mqtt', ...path].join(':'));
 
 export function notUndefined<T>(a: T | undefined): a is T {
     return typeof a !== 'undefined';
@@ -77,13 +76,13 @@ export function listenOnce<T>(client: MqttClient<any, any>, topic: string): Prom
             removeFn();
             resolve(msg);
         });
-    })
+    });
 }
 
 const MAX_STRING_LENGTH = 128;
 const ACTUAL_MAX_LEN = MAX_STRING_LENGTH - `"[${MAX_STRING_LENGTH}...]"`.length;
 export function prepareLogString(value: string): string {
-    if(value.length > ACTUAL_MAX_LEN ) {
+    if (value.length > ACTUAL_MAX_LEN) {
         value = `${value.substring(0, ACTUAL_MAX_LEN)}[${MAX_STRING_LENGTH}...]`;
     }
     return `"${value}"`;

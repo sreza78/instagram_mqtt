@@ -11,12 +11,14 @@ import {
     MqttMessage,
     MqttMessageOutgoing,
     PacketFlowFunc,
-    PacketType, SocksTlsTransport, TlsTransport
+    PacketType,
+    SocksTlsTransport,
+    TlsTransport,
 } from 'mqtts';
 import { ConnectionFailedError, EmptyPacketError } from '../errors';
 import { MQTToTConnectResponsePacket, readConnectResponsePacket } from './mqttot.connect.response.packet';
 import { SocksProxy } from 'socks';
-import {ConnectionOptions} from 'tls';
+import { ConnectionOptions } from 'tls';
 
 type MQTToTReadMap = Omit<DefaultPacketReadResultMap, PacketType.ConnAck> & {
     [PacketType.ConnAck]: MQTToTConnectResponsePacket;
@@ -39,7 +41,7 @@ export class MQTToTClient extends MqttClient<MQTToTReadMap, MQTToTWriteMap> {
         autoReconnect: boolean;
         requirePayload: boolean;
         socksOptions?: SocksProxy;
-        additionalOptions?: ConnectionOptions
+        additionalOptions?: ConnectionOptions;
     }) {
         super({
             autoReconnect: options.autoReconnect,
@@ -51,16 +53,18 @@ export class MQTToTClient extends MqttClient<MQTToTReadMap, MQTToTWriteMap> {
                 ...DefaultPacketWriteMap,
                 [PacketType.Connect]: writeConnectRequestPacket,
             },
-            transport: options.socksOptions ? new SocksTlsTransport({
-                host: options.url,
-                port: 443,
-                proxyOptions: options.socksOptions,
-                additionalOptions: options.additionalOptions
-            }) : new TlsTransport({
-                host: options.url,
-                port: 443,
-                additionalOptions: options.additionalOptions
-            }),
+            transport: options.socksOptions
+                ? new SocksTlsTransport({
+                      host: options.url,
+                      port: 443,
+                      proxyOptions: options.socksOptions,
+                      additionalOptions: options.additionalOptions,
+                  })
+                : new TlsTransport({
+                      host: options.url,
+                      port: 443,
+                      additionalOptions: options.additionalOptions,
+                  }),
         });
         this.mqttotDebug = (msg: string, ...args: string[]) =>
             debugChannel('mqttot')(`${options.url}: ${msg}`, ...args);

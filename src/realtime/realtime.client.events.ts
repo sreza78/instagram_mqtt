@@ -26,11 +26,11 @@ export type RealtimeClientEvents = MergedRealtimeSubPayloads & {
             client_subscription_id: '17849856529644700' | string;
         };
     };
-}
+};
 
 export type MergedRealtimeSubPayloads = {
     [x in keyof typeof QueryIDs]: string | Record<string, unknown>;
 } & KnownRealtimeSubPayloads;
 export type KnownRealtimeSubPayloads = {
     appPresence: AppPresenceEventWrapper;
-}
+};

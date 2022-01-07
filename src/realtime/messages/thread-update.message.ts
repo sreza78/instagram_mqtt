@@ -24,7 +24,7 @@ export interface ThreadUpdate {
     is_pin: boolean;
     named: boolean;
     canonical: boolean;
-    pending: boolean,
+    pending: boolean;
     archived: boolean;
     thread_type: 'private' | string;
     viewer_id: number;
@@ -36,14 +36,14 @@ export interface ThreadUpdate {
     approval_required_for_new_members: boolean;
     input_mode: number;
     business_thread_folder: number;
-    read_state: number
+    read_state: number;
     last_mon_sender_item_at: number;
     assigned_admin_id: number;
     shh_mode_enabled: boolean;
     inviter: InviterUser;
     has_older: boolean;
     has_newer: boolean;
-    last_seen_at?: Record<number, { timestamp: string, created: string, item_id: string, shh_seen_state: unknown }>;
+    last_seen_at?: Record<number, { timestamp: string; created: string; item_id: string; shh_seen_state: unknown }>;
     newest_cursor?: string;
     oldest_cursor?: string;
     next_cursor: string;
@@ -51,7 +51,6 @@ export interface ThreadUpdate {
     is_spam: boolean;
     last_permanent_item?: Partial<MessageSyncMessage>;
 }
-
 
 export interface InviterUser {
     pk: number;

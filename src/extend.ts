@@ -68,20 +68,14 @@ export function withFbns(client: IgApiClient | IgApiClientExt): IgApiClientFbns 
     return client;
 }
 
-export function withRealtime(
-    client: IgApiClient | IgApiClientExt,
-    mixins?: Mixin[]
-): IgApiClientRealtime {
+export function withRealtime(client: IgApiClient | IgApiClientExt, mixins?: Mixin[]): IgApiClientRealtime {
     client = assertClient(client);
     Object.defineProperty(client, 'realtime', { value: new RealtimeClient(client, mixins), enumerable: false });
     // @ts-ignore
     return client;
 }
 
-export function withFbnsAndRealtime(
-    client: IgApiClient | IgApiClientExt,
-    mixins?: Mixin[]
-): IgApiClientMQTT {
+export function withFbnsAndRealtime(client: IgApiClient | IgApiClientExt, mixins?: Mixin[]): IgApiClientMQTT {
     client = assertClient(client);
     Object.defineProperty(client, 'fbns', { value: new FbnsClient(client), enumerable: false });
     Object.defineProperty(client, 'realtime', { value: new RealtimeClient(client, mixins), enumerable: false });

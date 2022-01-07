@@ -70,8 +70,8 @@ export interface MessageSyncMessage {
             // not actually a user id but the type fits
             timestamp: BigInteger;
             client_context: string;
-            emoji: string
-            super_react_type: 'default' | 'none'
+            emoji: string;
+            super_react_type: 'default' | 'none';
         }[];
     };
     animated_media?: AnimatedMediaItem;
@@ -79,7 +79,6 @@ export interface MessageSyncMessage {
     media_share?: MediaShareItem;
 
     // op: 'replace' => added or left or removed
-
 }
 
 export interface ImageVersions {
